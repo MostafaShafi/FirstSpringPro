@@ -5,6 +5,7 @@ import com.example.shesh.Models.utilModel.GenderConverter;
 import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
@@ -16,7 +17,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SerializedName("id")
     @Column(name = "id")
-    private Integer _id;
+    private Long _id;
 
     @SerializedName("firstName")
     @Column(name = "firstName")
@@ -34,13 +35,22 @@ public class Person {
     @SerializedName("gender")
     @Column(name = "gender")
     @Convert(converter = GenderConverter.class)
-    private Gender gender;
+    private Gender _gender;
 
-    public Integer getId() {
+    @SerializedName("phone")
+    @Column(name = "phone")
+    private String _phone;
+
+    @SerializedName("addresses")
+    @Column(name = "addresses")
+    @ManyToMany()
+    private ArrayList<Address> _addresses;
+
+    public Long getId() {
         return _id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         _id = id;
     }
 
@@ -69,10 +79,26 @@ public class Person {
     }
 
     public Gender getGender() {
-        return gender;
+        return _gender;
     }
 
     public void setGender(Gender gender) {
-        this.gender = gender;
+        this._gender = gender;
+    }
+
+    public String getPhone() {
+        return _phone;
+    }
+
+    public void setPhone(String _phone) {
+        this._phone = _phone;
+    }
+
+    public ArrayList<Address> getAddresses() {
+        return _addresses;
+    }
+
+    public void setAddresses(ArrayList<Address> _addresses) {
+        this._addresses = _addresses;
     }
 }
