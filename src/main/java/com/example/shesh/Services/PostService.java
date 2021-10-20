@@ -36,9 +36,9 @@ public class PostService {
 
     public Post updatePost(Integer id, Post post) {
         Post oldPost = getPostById(id);
-        oldPost.set_userId(post.get_userId());
-        oldPost.set_title(post.get_title());
-        oldPost.set_body(post.get_body());
+        oldPost.setAuthor(post.getAuthor());
+        oldPost.setTitle(post.getTitle());
+        oldPost.setBody(post.getBody());
         return setPost(oldPost);
     }
 }
