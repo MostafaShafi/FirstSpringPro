@@ -1,7 +1,7 @@
 package com.example.shesh.Services;
 
 import com.example.shesh.Models.Person;
-import com.example.shesh.Repository.PersonRepository;
+import com.example.shesh.Repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

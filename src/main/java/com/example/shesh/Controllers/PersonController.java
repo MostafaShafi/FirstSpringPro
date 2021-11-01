@@ -37,5 +37,18 @@ public class PersonController {
         return gson.toJsonTree(service.getPersons()).toString();
     }
 
+    @DeleteMapping("deleteperson/{id}")
+    public void deletePerson(@PathVariable(value = "id") Long id) {
+        service.deletePersonById(id);
+    }
 
+    @DeleteMapping("deleteperson")
+    public void deletePerson(@Valid @RequestBody Person person) {
+        service.deletePerson(person);
+    }
+
+    @DeleteMapping("deleteallpersons")
+    public void deleteAllPersons() {
+        service.deleteAllPersons();
+    }
 }
