@@ -26,13 +26,13 @@ public class Student extends User{
     @ManyToOne(fetch = FetchType.LAZY)
     private Grade _grade;
 
-    @SerializedName("field")
+    @SerializedName("enterYear")
     @Column(name = "enterYear")
     @Min(1350)
     @Max(1500)
     private Integer _enterYear;
 
-    @SerializedName("field")
+    @SerializedName("enterTerm")
     @Column(name = "enterTerm")
     @Convert(converter = TermConverter.class)
     private Term _enterTerm;
