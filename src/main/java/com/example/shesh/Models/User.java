@@ -1,5 +1,6 @@
 package com.example.shesh.Models;
 
+import com.example.shesh.Models.utilModel.UserType;
 import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.*;
@@ -27,6 +28,11 @@ public class User extends Person{
     @Column(name = "registerDate", updatable = false)
     @Temporal(TemporalType.DATE)
     private Date _registerDate;
+
+    @SerializedName("userType")
+    @Column(name = "userType")
+    @Enumerated(EnumType.ORDINAL)
+    private UserType _userType;
 
     public String getUsername() {
         return _username;
