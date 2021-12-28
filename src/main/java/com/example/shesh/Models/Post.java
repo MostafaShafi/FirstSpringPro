@@ -16,7 +16,7 @@ public class Post {
     @SerializedName("id")
     private Long _id;
 
-    @Column(name = "author")
+    @JoinColumn(name = "author")
     @ManyToOne(fetch = FetchType.LAZY)
     private Author _author;
 

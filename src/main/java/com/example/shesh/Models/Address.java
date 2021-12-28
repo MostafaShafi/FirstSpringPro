@@ -15,19 +15,19 @@ public class Address {
     private Long _id;
 
     @SerializedName("country")
-    @Column(name = "country")
+    @JoinColumn(name = "country")
     @Convert(converter = LocationTypeConverter.class)
     @ManyToOne(fetch = FetchType.LAZY)
     private Location _country;
 
     @SerializedName("province")
-    @Column(name = "province")
+    @JoinColumn(name = "province")
     @Convert(converter = LocationTypeConverter.class)
     @ManyToOne(fetch = FetchType.LAZY)
     private Location _province;
 
     @SerializedName("town")
-    @Column(name = "town")
+    @JoinColumn(name = "town")
     @Convert(converter = LocationTypeConverter.class)
     @ManyToOne(fetch = FetchType.LAZY)
     private Location _town;
