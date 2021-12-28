@@ -1,7 +1,7 @@
 package com.example.shesh.Controllers;
 
-import com.example.shesh.Models.User;
-import com.example.shesh.Services.UserService;
+import com.example.shesh.Models.Users;
+import com.example.shesh.Services.UsersService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-public class UserController {
+public class UsersController {
 
     @Autowired
-    UserService service;
+    UsersService service;
     @Autowired
     private Gson gson;
 
     @PostMapping("/adduser")
-    public User addUser(@Valid @RequestBody User user, BindingResult result) {
-        return service.setUser(user);
+    public Users addUser(@Valid @RequestBody Users users, BindingResult result) {
+        return service.setUser(users);
     }
 
     @PutMapping("/edituser/{id}")
-    public User updateUser(@PathVariable(value = "id") Long id, @Valid @RequestBody User user) {
-        return service.updateUser(user);
+    public Users updateUser(@PathVariable(value = "id") Long id, @Valid @RequestBody Users users) {
+        return service.updateUser(users);
     }
 
     @GetMapping("/user/{id}")
@@ -43,8 +43,8 @@ public class UserController {
     }
 
     @DeleteMapping("deleteuser")
-    public void deleteUser(@Valid @RequestBody User user) {
-        service.deleteUser(user);
+    public void deleteUser(@Valid @RequestBody Users users) {
+        service.deleteUser(users);
     }
 
     @DeleteMapping("deleteallusers")
