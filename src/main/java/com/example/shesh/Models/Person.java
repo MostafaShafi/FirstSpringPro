@@ -7,14 +7,16 @@ import com.google.gson.annotations.SerializedName;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Person")
-@MappedSuperclass
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@MappedSuperclass
 public class Person {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @SerializedName("id")
     @Column(name = "id")
     private Long _id;
@@ -44,7 +46,20 @@ public class Person {
     @SerializedName("addresses")
     @Column(name = "addresses")
     @ManyToMany()
-    private ArrayList<Address> _addresses;
+    private List<Address> _addresses;
+
+    public Person(Long _id, String _firstName, String _lastName, Date _birthDay, Gender _gender, String _phone, List<Address> _addresses) {
+        this._id = _id;
+        this._firstName = _firstName;
+        this._lastName = _lastName;
+        this._birthDay = _birthDay;
+        this._gender = _gender;
+        this._phone = _phone;
+        this._addresses = _addresses;
+    }
+
+    public Person() {
+    }
 
     public Long getId() {
         return _id;
@@ -94,11 +109,11 @@ public class Person {
         this._phone = _phone;
     }
 
-    public ArrayList<Address> getAddresses() {
+    public List<Address> getAddresses() {
         return _addresses;
     }
 
-    public void setAddresses(ArrayList<Address> _addresses) {
+    public void setAddresses(List<Address> _addresses) {
         this._addresses = _addresses;
     }
 }
