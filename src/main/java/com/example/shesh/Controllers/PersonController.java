@@ -4,6 +4,7 @@ import com.example.shesh.Models.Person;
 import com.example.shesh.Services.PersonService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class PersonController {
     @Autowired
     private Gson gson;
 
-    @PostMapping("/addperson")
+    @PostMapping(value = "/addperson", produces = {MediaType.APPLICATION_JSON_VALUE})
     public Person addPerson(@Valid @RequestBody Person person, BindingResult result) {
         return service.setPerson(person);
     }
@@ -50,5 +51,10 @@ public class PersonController {
     @DeleteMapping("deleteallpersons")
     public void deleteAllPersons() {
         service.deleteAllPersons();
+    }
+
+    @PostMapping(value = "/addname", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public void addName(@RequestBody String name) {
+        System.out.println("\n\n" + name + "\n\n");
     }
 }

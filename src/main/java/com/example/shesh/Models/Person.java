@@ -2,60 +2,50 @@ package com.example.shesh.Models;
 
 import com.example.shesh.Models.utilModel.Gender;
 import com.example.shesh.Models.utilModel.GenderConverter;
-import com.google.gson.annotations.SerializedName;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "Person")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-//@MappedSuperclass
 public class Person {
     
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @SerializedName("id")
     @Column(name = "id")
     private Long _id;
 
-    @SerializedName("firstName")
     @Column(name = "firstName")
     private String _firstName;
 
-    @SerializedName("lastName")
     @Column(name = "lastName")
     private String _lastName;
 
-    @SerializedName("birthday")
     @Column(name = "birthday")
     @Temporal(TemporalType.DATE)
     private Date _birthDay;
 
-    @SerializedName("gender")
     @Column(name = "gender")
     @Convert(converter = GenderConverter.class)
     private Gender _gender;
 
-    @SerializedName("phone")
     @Column(name = "phone")
     private String _phone;
 
-    @SerializedName("addresses")
     @Column(name = "addresses")
     @ManyToMany()
     private List<Address> _addresses;
 
-    public Person(Long _id, String _firstName, String _lastName, Date _birthDay, Gender _gender, String _phone, List<Address> _addresses) {
-        this._id = _id;
-        this._firstName = _firstName;
-        this._lastName = _lastName;
-        this._birthDay = _birthDay;
-        this._gender = _gender;
-        this._phone = _phone;
-        this._addresses = _addresses;
+    public Person(Long id, String firstName, String lastName, Date birthDay, Gender gender, String phone, List<Address> addresses) {
+        this._id = id;
+        this._firstName = firstName;
+        this._lastName = lastName;
+        this._birthDay = birthDay;
+        this._gender = gender;
+        this._phone = phone;
+        this._addresses = addresses;
     }
 
     public Person() {
@@ -115,5 +105,18 @@ public class Person {
 
     public void setAddresses(List<Address> _addresses) {
         this._addresses = _addresses;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "_id=" + _id +
+                ", _firstName='" + _firstName + '\'' +
+                ", _lastName='" + _lastName + '\'' +
+                ", _birthDay=" + _birthDay +
+                ", _gender=" + _gender +
+                ", _phone='" + _phone + '\'' +
+                ", _addresses=" + _addresses +
+                '}';
     }
 }

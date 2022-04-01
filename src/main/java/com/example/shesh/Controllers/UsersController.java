@@ -4,6 +4,7 @@ import com.example.shesh.Models.Users;
 import com.example.shesh.Services.UsersService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,5 +51,10 @@ public class UsersController {
     @DeleteMapping("deleteallusers")
     public void deleteAllUsers() {
         service.deleteAllUsers();
+    }
+
+    @PostMapping(value = "/setName", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public void addName(@RequestBody String name) {
+        System.out.println("\n\n" + name + "\n\n");
     }
 }
